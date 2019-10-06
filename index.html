@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html>
 
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-89938714-11"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-89938714-11');
+</script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link
     href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800,900&display=swap&subset=cyrillic,cyrillic-ext"
@@ -54,6 +66,7 @@
             }
 
             $scope.itemClick = function (item) {
+                gtag('event', 'item_click');
                 window.open(item.link, '_blank');
             }
         });
