@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+    href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800,900&display=swap&subset=cyrillic,cyrillic-ext"
+    rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="items.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<body ng-app="myApp" ng-controller="main">
+
+
+
+    <!-- <div class='instagram-info'>instagram info</div> -->
+    <div class='top'>
+        <div>
+            <div class='header-yellow'></div>
+            <div class="header-name">@ALI_TOP_RU</div>
+        </div>
+        <input class='search-input' ng-model='search.text' type='text' placeholder="#ID или название">
+        <div class='info-text'>Нажмите на товар чтобы открыть в Алиэкспресс.</div>
+    </div>
+
+
+
+    <div class='items'>
+        <div class='item' ng-click='itemClick(item)' ng-repeat='item in items'>
+            <img class='item-img' src="{{item.image}}">
+        </div>
+    </div>
+
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('main', function ($scope) {
+            $scope.items = items;
+
+            $scope.$watch('search.text', function (nval, oval) {
+                if (oval !== nval) {
+                    $scope.filter(nval);
+                }
+            });
+
+            $scope.filter = function (text) {
+                if (text == "") {
+                    $scope.items = items;
+                } else {
+                    $scope.items = items.filter(function (item) {
+                        return ((item.id == text) || (item.name.indexOf(text) > -1));
+                    });;
+                }
+            }
+
+            $scope.itemClick = function (item) {
+                window.open(item.link, '_blank');
+            }
+        });
+    </script>
+</body>
+
+</html>
