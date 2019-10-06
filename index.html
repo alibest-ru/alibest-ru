@@ -66,7 +66,9 @@
             }
 
             $scope.itemClick = function (item) {
-                gtag('event', 'item_click');
+                gtag('event', 'item_click', {
+                    'event_label': 'Item id: ' + item.id
+                });
                 window.open(item.link, '_blank');
             }
         });
